@@ -6,11 +6,6 @@ dec = [0 for i in range(n)]
 
 idx = max_length = 0
 
-# 최댓값은 몇 번째 인덱스에 존재하나?
-for i in range(n):
-    if (arr[i] == max(arr)):
-        idx = i
-
 # 증가하는 수열 길이
 for i in range(n):
     idx = i
