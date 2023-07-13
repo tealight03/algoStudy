@@ -1,5 +1,20 @@
-1) 문제 파악
+1) 문제 인식
+물건 개수(n)와 배낭에 넣을 수 있는 최대 무게(k)를 입력받고,
+물건의 무게(weight)와 가치(value)를 n번 입력받아 
+배낭에 넣을 수 있는 물건들의 가치의 최댓값을 구하는 문제입니다.
 
 2) 문제 유형 파악
+배낭에 넣을 수 있는 최대 무게를 잘 조합해서
+만들어낼 수 있는 가치의 최댓값을 구하는 전형적인 냅색 알고리즘 응용 문제입니다.
 
 3) 알고리즘(슈도 코드)
+n, k = map(int, input().split())
+
+for i in range(1, n+1):
+    weight, value = map(int, input().split()) # 무게, 가치 입력
+    for j in range(1, k+1):
+        if j < weight: # j < weight이면 위에 값 들고오기
+            dp[i][j] = dp[i-1][j]
+        else: # 아니면 위에 값 + 위에서 weight 뺀 값 + 가치 넣어주기
+            dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight] + value)
+print(dp[n][k]) # 출력 
