@@ -1,0 +1,38 @@
+1) 문제 인식
+주어진 k개의 랜선을 같은 길이로 잘라서 n개 이상의 랜선을 만들 때,
+가능한 숫자 n 중 가장 큰 수를 찾는 문제입니다.
+
+2) 문제 유형 파악
+이분 탐색 알고리즘을 이용해서 랜선을 잘랐을 때 n개 이상의 수를 만들 수 있는 수를 찾고,
+그 수로부터 max까지의 수 중 위 조건을 만족하는 최댓값을 찾는 문제입니다.
+
+3) 알고리즘(슈도코드)
+k, n = map(int, input().split())
+
+lan = []
+
+for _ in range(k):
+    lan.append(int(input()))
+
+num = max(lan) # max 값 찾기
+
+mini = mid = 0
+maxi = max(lan) + 1
+
+while (mini < maxi): # 이분탐색(Upper-Bound)
+    mid = (maxi + mini) // 2
+    cnt = 0
+
+    for i in lan:
+        cnt += i // mid
+    
+    if cnt < n: 
+        # cnt < n이라면 maxi = mid
+        # 더 작은 쪽으로 범위를 좁혀야함
+        maxi = mid
+    else :
+        # cnt >= n이라면 mini = mid + 1
+        # 더 큰 쪽으로 범위를 좁혀야함
+        mini = mid + 1
+
+print(mini-1)
