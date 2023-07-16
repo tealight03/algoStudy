@@ -1,0 +1,29 @@
+1) 문제 인식
+n개의 원소를 가진 리스트(배열)를 입력받아
+원소들을 k개씩 묶어서 구간 합을 구할 때
+구간 합의 최댓값을 구하는 문제입니다.
+
+2) 문제 유형 파악
+슬라이딩 윈도우를 이용하여 구간 합을 빠르게 구하고 비교하는 문제 유형입니다.
+
+3) 알고리즘(슈도코드)
+n, k = map(int, input().split())
+
+temp = list(map(int, input().split()))
+total = ptr1 = 0
+ptr2 = k
+
+# dummy data 넣고 시작
+for i in range(k):
+    total += temp[i]
+
+max_value = total
+
+while (ptr2 < n): # ptr2가 n보다 작은 인덱스를 가리킬 동안 반복
+    total = total - temp[ptr1] + temp[ptr2] # 구간 합 구하기 
+    if max_value < total :
+        max_value = total
+    ptr1 += 1 # ptr1++;
+    ptr2 += 1 # ptr2++;
+
+print(max_value) # 결과값 출력
