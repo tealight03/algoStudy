@@ -4,6 +4,30 @@
 자신과 같은 경우가 몇 가지인지 세는 문제입니다. 
 
 2) 문제 유형 파악
-
+이분탐색과 투 포인터를 이용해 원소 내의 한 원소별 '좋은 수'를 찾아내는 문제 유형입니다.
 
 3) 알고리즘(슈도 코드)
+n = int(input())
+num = list(map(int, input().split()))
+num.sort()
+
+cnt = 0
+
+# counting
+for i in range(n): # 원소 하나 지정
+    tmp = num[:i] + num[i+1:] # i번째를 제외한 원소들 리스트에 저장
+    start = 0
+    end = len(tmp)-1
+
+    while (start < end):
+        mid = tmp[start] + tmp[end] # mid => 두 데이터의 합 구하는 변수
+
+        if mid == num[i]: # 같다면 카운트 후 넘어가기
+            cnt += 1
+            break
+        elif mid > num[i]: # 더 크다면 end를 더 작은 값으로 구해서 다시 합을 계산
+            end -= 1
+        else: # 더 작다면 start를 더 큰 값으로 구해서 다시 합을 계산
+            start += 1
+        
+print(cnt)
