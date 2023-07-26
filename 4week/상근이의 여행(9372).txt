@@ -1,5 +1,21 @@
 1) 문제 인식
+테스트케이스 수 n을 입력받아서
+국가끼리 이동할 수 있는 비행기 노선을 저장해
+각 케이스별 최소로 이용할 수 있는 비행기의 종류의 수를 출력하는 문제입니다
 
 2) 문제 유형 파악
+비행기의 종류가 m개라고 할 때, 상근이가 이용할 수 있는
+최소 비행기 종류의 수는 n-1개이므로 n-1을 출력해주면 해결됩니다.
 
 3) 알고리즘(슈도 코드)
+import sys
+input = sys.stdin.readline
+
+test = int(input()) # 테스트케이스 입력
+
+for _ in range(test):
+    n, m = map(int, input().split())
+
+    for _ in range(m):
+        a, b = map(int, input().split())
+    print(n-1) # n-1 출력
