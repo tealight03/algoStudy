@@ -1,7 +1,61 @@
 1) 문제 인식
-
+이진 탐색 트리를 구현해서 트리 내의 노드를 후위 순회 방식으로
+순회한 결과를 출력하는 문제입니다.
 
 2) 문제 유형 파악
-
+구조체로 노드를 만들어서 이진 탐색 트리를 구현하고,
+후위 순회 방식의 함수를 구현해 순회 결과를 출력하는 유형입니다.
 
 3) 알고리즘(슈도코드)
+#include<stdio.h>
+#include<stdlib.h>
+
+// 구조체로 노드 만들기
+typedef struct node {
+	int key;
+	struct node* left;
+	struct node* right;
+} Node;
+
+// 새로운 노드 생성
+Node *createNode(int key){
+	Node *p = (Node*)malloc(sizeof(Node));
+	p->key = key;
+	p->left = p->right=NULL;
+	return p;
+}
+
+// 트리에 새 노드 삽입
+Node *insert(Node *p, int key){
+    // 노드가 없는 경우 새 노드 생성
+	if (p == NULL) return createNode(key);
+
+    // key값이 p->key보다 작으면 왼쪽에 삽입
+	if (key < p->key) p->left = insert(p->left,key);
+
+    // 중복 삽입 방지를 위해 == 는 거른다
+    // key값이 p->key보다 크면 오른쪽에 삽입
+	else if (key > p->key) p->right = insert(p->right,key);
+	return p;
+}
+
+// 후위 순회 함수
+Node* postorder(Node* head){
+	if (head == NULL) return 0;
+	postorder(head->left);
+	postorder(head->right);
+	printf("%d\n", head->key);
+}
+
+int main(void){
+	Node* head = NULL;
+	int key = 0;
+	
+	while (scanf("%d", &key) != EOF){
+		head = insert(head, key);
+	}
+	
+	postorder(head);
+	
+	return 0;
+}
