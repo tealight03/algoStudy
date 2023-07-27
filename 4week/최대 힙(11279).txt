@@ -1,0 +1,30 @@
+1) 문제 인식
+
+
+2) 문제 유형 파악
+
+
+3) 알고리즘(슈도 코드)
+import heapq 
+import sys
+input = sys.stdin.readline 
+
+n = int(input()) # 연산의 개수 
+
+q = [] 
+for _ in range(n):
+    x = int(input()) 
+    
+    # x가 0일 때
+    if x == 0:
+        # 배열이 비어있는 경우 0출력
+        if len(q) == 0:
+            print(0)
+        # 배열이 비어있지 않은 경우 가장 큰 값 출력
+        else:
+            num = heapq.heappop(q)
+            print(-num)
+    # x가 자연수일 때
+    else:
+        # 배열에 x를 삽입
+        heapq.heappush(q, -x)
