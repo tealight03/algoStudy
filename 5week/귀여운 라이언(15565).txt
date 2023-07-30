@@ -1,0 +1,35 @@
+1) 문제 인식
+라이언 인형과 어피치 인형이 일렬로 나열된 순서를 입력받아서
+라이언 인형이 최소 k개 포함된 부분 집합의 크기를 구하는 문제입니다.
+해당하는 부분 집합이 존재하지 않을 경우 -1을 출력합니다.
+
+2) 문제 유형 파악
+슬라이딩 윈도우 기법을 이용해 윈도우의 크기를 k로 잡아서
+윈도우 구간 내에 라이언 인형이 최소 k개 이상 잡히도록 해서
+구간을 계산하여 출력한다
+
+3) 알고리즘(슈도 코드)
+leng, k = map(int, input().split())
+
+doll = list(map(int, input().split()))
+lion = []
+
+for i in range(len(doll)): # 리스트에 라이언 인형 위치 저장
+    if doll[i] == 1:
+        lion.append(i)
+
+minleng = len(doll) # 최댓값으로 잡아준다
+start = 0
+end = k-1
+
+if len(lion) < k: # 만약 인형 개수가 k보다 작다면 출력 & 종료
+    print(-1)
+    exit(0)
+
+while end != len(lion): # end == len(lion)일 때까지 반복
+    cnt = lion[end] - lion[start] + 1
+    minleng = min(minleng, cnt)
+    start += 1
+    end += 1
+
+print(minleng) # 구간 출력
