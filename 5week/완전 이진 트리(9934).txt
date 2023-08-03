@@ -13,7 +13,7 @@ tree = list(map(int,input().split()))
 bin_tree = [[] for _ in range(K)]
 
 def binary_search(tree,depth):
-    if len(tree)==1:#last layer
+    if len(tree) == 1:#last layer
         bin_tree[depth].extend(tree)
         return 
     mid = len(tree) // 2
@@ -24,7 +24,7 @@ def binary_search(tree,depth):
 binary_search(tree,0)
 
 for i in range(K):
-    if i==0:
+    if i == 0:
         print(bin_tree[i][0])
     else:
         print(*bin_tree[i])
