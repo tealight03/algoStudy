@@ -5,6 +5,7 @@ def get_stars(n):
             fractal.append(n[i % len(n)] + " " * len(n) + n[i % len(n)])
         else:
             fractal.append(n[i % len(n)] * 3)
+            
     return fractal
  
  
