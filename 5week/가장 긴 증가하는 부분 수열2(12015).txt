@@ -1,0 +1,40 @@
+1) 문제 인식
+이전 단계인 가장 긴 증가하는 부분 수열(11053) 유형보다
+최대 입력값 한도가 1000배로 늘었으므로 기존 알고리즘에서 약간 변형하여
+LIS 알고리즘과 이분 탐색 알고리즘을 이용해서 문제를 풀이하면 됩니다.
+
+2) 문제 유형 파악
+데이터를 저장할 리스트 arr의 마지막 데이터보다 큰 수(a)가 확인되면 append,
+마지막 데이터보다 작은 수가 들어왔다면 이전의 수들(b)과 비교하여 
+a가 b보다 작은 경우를 찾아 b자리에 a를 대입하는 방식으로 수열을 구하는 알고리즘으로 풀이합니다.
+
+3) 알고리즘(슈도 코드)
+n = int(input())
+arr = list(map(int,input().split()))
+result = [arr[0]]
+
+for i in arr[1:]:
+    start, end = 0,len(result)
+    
+    # 현재 수가 결과 수열의 마지막보다 크다면 
+    # 그냥 append 해주고 끝낸다
+    if i > result[-1]:
+        result.append(i)
+        continue
+    
+    # 이분 탐색으로 현재 수가 들어갈 적절한 위치 탐색
+    while(start < end):
+        mid = (start + end)//2
+        
+        if result[mid] < i:
+            start = mid + 1
+        else:
+            end = mid
+    
+    # 들어갈 자리에 있는 수가 i보다 크거나 같다면 i로 교체
+    # 작다면 굳이 바꿀 필요가 없으므로 그 다음 수를 i로 교체
+    if result[mid] >= i:
+        result[mid] = i
+    else:
+        result[mid+1] = i
+print(len(result))
