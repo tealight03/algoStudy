@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-K=int(input())
+K = int(input())
 tree = list(map(int,input().split()))
 bin_tree = [[] for _ in range(K)]
 
@@ -20,4 +20,6 @@ for i in range(K):
     if i == 0:
         print(bin_tree[i][0])
     else:
-        print(*bin_tree[i])
+        for j in range(len(bin_tree[i])):
+            print(bin_tree[i][j], end=" ")
+        print()
