@@ -13,7 +13,6 @@ def binary_search(key, card):
         
     return 0
 
-
 n = int(input())
 card = list(map(int, input().split()))
 card.sort()
