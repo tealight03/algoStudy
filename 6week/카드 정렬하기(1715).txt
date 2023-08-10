@@ -1,0 +1,30 @@
+1) 문제 인식
+입력된 n개의 정렬된 카드 묶음을 비교해서 하나의 묶음으로 정리할 때,
+비교하는 최소 횟수를 구하는 문제입니다.
+
+2) 문제 유형 파악
+우선순위 큐를 이용해서 큐 삽입과 동시에 우선순위를 비교하여 정리되도록 하고,
+누적 합을 구하기 위해서 tmp1+tmp2값을 cnt에 더하고
+큐에 추가해서 뒤에 계산에 사용하는 방식으로 알고리즘을 구성하여 해결할 수 있습니다.
+
+3) 알고리즘(슈도 코드)
+import heapq
+
+n = int(input())
+card = []
+
+for i in range(n):
+    heapq.heappush(card,int(input()))
+
+cnt = 0
+
+if n == 1:
+    print(0)
+else:
+    for i in range(n-1):
+        tmp1 = heapq.heappop(card)
+        tmp2 = tmp1 + heapq.heappop(card)
+        cnt += tmp2
+        heapq.heappush(card,tmp2)
+        
+    print(cnt)
