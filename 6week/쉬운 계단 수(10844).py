@@ -1,8 +1,18 @@
 n = int(input())
-cnt = 9 # n == 1일 때 
 
-# n >= 2라면
-if n >= 2:
-    cnt = 3 + (n-1) * 14
+dp = [[0]*10 for _ in range(n+1)]
+for i in range(1, 10):
+    dp[1][i] = 1
 
-print(cnt % 1000000000)
+mod = 1000000000
+
+for i in range(2, n+1):
+    for j in range(10):
+        if j == 0:
+            dp[i][j] = dp[i-1][1]
+        elif j == 9:
+            dp[i][j] = dp[i-1][8]
+        else:
+            dp[i][j] = dp[i-1][j-1] + dp[i-1][j+1] 
+
+print(sum(dp[n]) % mod)
