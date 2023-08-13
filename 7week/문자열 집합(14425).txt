@@ -1,0 +1,27 @@
+1) 문제 인식
+문자열 집합에 n개의 문자열을 저장해두고
+m번 입력받는 문자열이 문자열 집합에 포함되는지 확인하여
+포함되는 문자열 개수만큼 세는 문제입니다.
+
+2) 문제 유형 파악
+n, m을 입력받아서 n번 입력받은 문자열은 리스트(집합)에 저장하고,
+이후 입력받는 m개의 문자열이 리스트에 존재하는지 확인해서
+존재하는 문자열의 수만큼 카운트해서 출력해주면 됩니다.
+
+3) 알고리즘(슈도 코드)
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split()) # n, m 입력
+string = []
+cnt = 0
+
+for _ in range(n): # n개의 문자열을 집합에 저장
+    string.append(input().rstrip())
+
+for _ in range(m): # m개의 문자열을 집합에 저장
+    str = input().rstrip()
+    if str in string: # 존재한다면 cnt++
+        cnt += 1
+
+print(cnt)
