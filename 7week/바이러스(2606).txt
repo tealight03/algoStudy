@@ -1,0 +1,35 @@
+1) 문제 인식
+그래프 탐색 알고리즘을 이용해 1번 컴퓨터에 웜 바이러스가 감염되었을 시
+바이러스가 전염되는 컴퓨터의 개수를 구하는 문제입니다.
+
+2) 문제 유형 파악
+DFS(Depth First Search) 알고리즘을 이용하여 1번 컴퓨터를 루트 노드로 지정해
+탐색을 진행하며 상호간에 연결된 그래프의 노드 개수를 탐색하여 출력하는 알고리즘을 작성하여 해결할 수 있습니다.
+
+3) 알고리즘(슈도 코드)
+def dfs(graph, node, visited):
+    visited[node] = True
+    
+    for i in graph[node]:
+        if visited[i] == False:
+            dfs(graph, i, visited)
+
+n = int(input())
+m = int(input())
+
+cpt = [[] for i in range(n+1)]
+visited = [False] * (n+1)
+cnt = 0
+
+for i in range(m):
+    a, b = map(int, input().split())
+    cpt[a].append(b)
+    cpt[b].append(a)
+
+dfs(cpt, 1, visited)
+
+for flag in visited:
+    if flag == True:
+        cnt += 1
+
+print(cnt-1)
