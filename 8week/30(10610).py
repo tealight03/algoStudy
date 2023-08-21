@@ -1,5 +1,13 @@
-# 숫자 입력
-# res = -1 입력
-# 3의 배수 조건 & 10의 배수 조건을 만족하는지 확인
-# 만족한다면 해당하는 숫자를 찾아 num에 넣기
-# 결과값 출력
+num = sorted(input(), reverse = True)
+total = 0
+
+if '0' not in num:
+    print(-1)
+else:
+    for i in num:
+        total += int(i)
+    
+    if total % 3 != 0:
+        print(-1)
+    else:
+        print("".join(num))
