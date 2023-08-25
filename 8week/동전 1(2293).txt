@@ -1,0 +1,21 @@
+1) 문제 인식
+
+
+2) 문제 유형 파악
+
+
+3) 알고리즘(슈도 코드)
+n, k = map(int, input().split())
+coins = []
+for _ in range(n):
+    coins.append(int(input()))
+
+dp = [0] * (k+1)
+dp[0] = 1
+
+for coin in coins:
+    for i in range(coin, k+1):
+        possible_cases = dp[i - coin]
+        dp[i] += possible_cases
+
+print(dp[k])
